@@ -21,6 +21,7 @@ router.post(
     const { email, password } = req.body;
     const userExist = await User.findOne({ email });
     if (userExist) {
+      console.log("enail in use.");
       throw new BadRequestError("email in use.");
     }
     const user = User.build({ email, password });

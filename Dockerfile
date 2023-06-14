@@ -13,4 +13,6 @@ ENV URL_MONGODB=mongodb-srv:27017
 
 ENV PORT=8080
 
+ENV JWT_KEY=somekey 
+
 ENTRYPOINT [ "npm","start" ]

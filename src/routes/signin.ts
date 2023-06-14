@@ -3,7 +3,7 @@ import { body } from "express-validator";
 import { validateRequest } from "../middlewares/validate-request";
 import { User } from "../models/user";
 import { BadRequestError } from "../errors/bad-request-error";
-import { Password } from "../services/passwrod";
+import { Password } from "../services/password";
 import jwt from "jsonwebtoken";
 
 const signin = Router();
@@ -19,7 +19,7 @@ signin.post(
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
-    if (!user) throw new BadRequestError("user doesn't exists");
+    if (!user) throw new BadRequestError("User doesn't exists");
 
     const passMatches = await Password.compare(user.password, password);
     if (!passMatches) throw new BadRequestError("Invalid credentials.");

@@ -35,7 +35,9 @@ app.all("*", async () => {
 app.use(errorHandler);
 
 const start = async () => {
-  console.log("connecting to mongodb.");
+  if (!process.env.JWT_KEY)
+    throw new Error("Please provide a JWT_KEY environment variable. ");
+
   await mongoose.connect(
     `mongodb://${process.env.URL_MONGODB || "localhost:27017"}/auth`
   );
